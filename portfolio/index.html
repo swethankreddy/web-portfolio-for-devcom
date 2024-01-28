@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>swethank portfolio website</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="header">
+    <div class="container">
+        <nav>
+            <img src="images/correct logo.png" class="logo">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+              
+               
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-text">
+            <p>UNDERGRADUATE DEVELOPER</p>
+            <h1>Hi, I'm <span>Swethank Reddy</span><br> from IIT Bombay</h1>
+        </div>
+    </div>  
+</div>  
+<!------------about------------>
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/IMG_1443.heic">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p>I'm Swethank Reddy, a B.Tech student at IIT Bombay, originally from Telangana. Passionate about Graphic Designing, UI/UX Designing, web development and editing.</p>
+                <h2 class="sub-title-2">Hobbies</h2>
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Digital Art and illustration</p>
+                    <p class="tab-links" onclick="opentab('experience')">Web Development</p>
+                    <p class="tab-links" onclick="opentab('education')">Exploring new softwares</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li>Digital art and illustration involve creating visual artwork using digital tools and software<br><span> Some of my projects</span></li>
+                        <img src="images/IMG_1704.jpg" alt="">
+                        <img src="images/IMG_1705.jpg" alt="">
+                        <img src="images/IMG_1706.jpg" alt="">
+                    </ul>
+                </div>
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li>Recently felt in love with web developing while trying to make personal portfolio for my works<br> </li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li>For me, exploring new software is not just a hobby; it's a journey of constant learning and discovery<br> <span> Some of them</span></li>
+                        <img src="images/IMG_1713.PNG" alt="">
+                        <img src="images/IMG_1715.PNG" alt="">
+                        <img src="images/IMG_1716.PNG" alt="">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--contact-->
+<div id="contact">
+    <div class="container" >
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                 <p><i class="fa-solid fa-paper-plane"></i> swethank877@gmail.com</p>
+                 <p>7569132297</p>
+            </div>
+             <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="10" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+             </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add('active-link')
+        document.getElementById(tabname).classList.add("active-tab")
+    }
+</script>
+<form name="submit-to-google-sheet">
+   
+  </form>
+  
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyqJ6wyoqX18TxyAyqvN1C6Jt21IRfopxWLx2z6eBnN4r3n8JQNyMKUyEk9dBJRRU-12Q/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent succesfully"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+</body> 
+</html>
